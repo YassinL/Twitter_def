@@ -4,6 +4,7 @@ let connection = mysql.createConnection({
     user: 'root',
     password: 'root',
     database: 'twitter',
+    // port: 8889
 });
 
 connection.connect();
