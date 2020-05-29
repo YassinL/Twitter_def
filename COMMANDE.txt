@@ -1,8 +1,10 @@
 sudo mysql -u root -p
-CREATE DATABASE twitter;
+CREATE DATABASE IF NOT EXISTS twitter;
 use twitter;
 CREATE TABLE messages (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
     content  VARCHAR(140),
     create_ad datetime
 );
+
+show tables;
