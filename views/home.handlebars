@@ -1,0 +1,38 @@
+<section class="section-accueil">
+
+    <div class="tweet-navigation"></div>
+
+    <div class="tweet-container">
+
+        <form action="/" method="post" class="tweet-container-form">
+            <div class="tweet-container-message">
+                <label for="message"></label>
+                <div class="tweet-container-text">
+                    <img src="../public/images/yoram.jpeg" alt="">
+                     <textarea name="message" id="message" placeholder="Whats's happening ?"></textarea>
+                </div>
+               
+            </div>
+            <div class="tweet-container-button">
+                <button type="submit" class="tweet-button">Tweet</button>
+            </div>
+            
+        </form>
+
+        <div class="comments">
+        {{#each message}}
+            <div class="comments-comment">
+                <img src="../public/images/yoram.jpeg" alt="">
+                <div class="comments-comment-content">
+                    <div class="comments-comment-content-text">{{ content }}</div>
+                    <div class="comments-comment-content-date">{{ moment created_at "fromNow"}}</div>
+                </div>
+            </div>
+        {{/each}}
+        </div>
+
+    </div>
+
+    <div class="tweet-search"></div>
+
+</section>

@@ -1,0 +1,76 @@
+.section-accueil {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    background-color: #16212b;
+    color: white;
+}
+
+.tweet-navigation {
+    width: 25vw;
+    height: 100%;
+}
+
+.tweet-container {
+    width: 50vw;
+    height: 100%;
+    overflow-y: scroll;
+    border-right: 1px solid gray;
+    border-left: 1px solid gray;
+    &-form {
+        width: 100%;
+        border-bottom: 10px solid rgba(128, 128, 128, 0.5);
+    }
+    &-text {
+        display: flex;
+        width: 100%;
+        padding: 3% 3% 0 3%;
+        img {
+            width: 15%;
+            height: auto;
+            border-radius: 50%;
+        }
+        textarea {
+            width: 100%;
+            margin-left: 3%;
+            padding: 1%;
+            background-color: transparent;
+            color: white;
+            border: none;
+            font-size: 20px;
+        }
+    }
+    &-button {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        padding: 0 3% 3% 0;
+        button {
+            background-color: #1DA1F2;
+            color: white;
+            border: none;
+            padding: 1% 2%;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+    }
+}
+
+.comments {
+    &-comment {
+        display: flex;
+        padding: 3%;
+        border-bottom: 1px solid grey;
+        img {
+            width: 10%;
+            height: auto;
+            border-radius: 50%;
+            margin-right: 2%;
+        }
+    }
+}
+
+.tweet-search {
+    width: 25vw;
+    height: 100%;
+}
