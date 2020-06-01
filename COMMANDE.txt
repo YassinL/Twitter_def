@@ -7,4 +7,17 @@ CREATE TABLE messages (
     create_ad datetime
 );
 
+CREATE TABLE user ( 
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
+    first_name VARCHAR(100) NOT NULL, 
+    last_name VARCHAR(100) NOT NULL, 
+    birthday date NOT NULL, 
+    city VARCHAR(255) DEFAULT NULL, 
+    email VARCHAR(255) NOT NULL, 
+    telephone INT(10) DEFAULT NULL, 
+    user_name VARCHAR(50) NOT NULL, 
+    password varchar(50) NOT NULL
+);
+
 show tables;
+

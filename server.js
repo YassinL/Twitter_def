@@ -20,15 +20,35 @@ server.use('/public', express.static('public'))
 server.use(bodyParser.urlencoded({ extended: false }))
 server.use(bodyParser.json())
 
-// Routes
+// ROUTES
+// LOGIN
 server.get("/", (request, response) => {
     response.render("login");
 });
 
+// SIGNUP
 server.get("/signup", (request, response) => {
     response.render("signup")
 })
 
+server.post("/signup", (request, response) => {
+    let User = require('./models/user')
+    User.create(
+        request.body.first_name,
+        request.body.last_name,
+        request.body.birthday,
+        request.body.city,
+        request.body.email,
+        request.body.telephone,
+        request.body.user_name,
+        request.body.password,
+        function() {
+
+            response.redirect('/')
+        })
+})
+
+// CREE ET RECUPERE LES TWEETS
 server.get('/home', (request, response) => {
     let Message = require('./models/message')
     Message.all(function(messages) {
@@ -47,5 +67,6 @@ server.post('/home', (request, response) => {
         })
     }
 })
+
 
 server.listen(8080);

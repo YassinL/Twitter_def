@@ -1,20 +1,20 @@
 
 <div class="home">
     <img class="home-image"src="/public/images/logoTwitter.png" alt="logoTwitter">
-    <h1 class="home-title">Se connecter à Twitter</h1>
+    <h1 class="home-title">Connect on Twitter</h1>
     
 </div>
 
 
-<form class="form">
+<form action="/login" method="POST" class="form">
     <div class="form-input">
-        <label for="">Username</label>
-        <input type="text">
+        <label for="user_name">Username, Phone, Email</label>
+        <input type="text" name="user_name" id="user_name">
     </div>
 
     <div class="form-input">
-        <label for="">Password</label>
-        <input type="password">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password">
     </div>
     
     <button type="submit">Submit</button>
