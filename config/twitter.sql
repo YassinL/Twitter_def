@@ -60,7 +60,7 @@ CREATE TABLE `user` (
   `city` varchar(255) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
   `telephone` int(10) DEFAULT NULL,
-  `user_name` varchar(50) NOT NULL,
+  `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -68,7 +68,7 @@ CREATE TABLE `user` (
 -- Contenu de la table `user`
 --
 
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `birthday`, `city`, `email`, `telephone`, `user_name`, `password`) VALUES
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `birthday`, `city`, `email`, `telephone`, `username`, `password`) VALUES
 (1, 'Yassin', 'Leclercq', '2020-06-10', 'Montrouge', 'yassin@leclercq.com', NULL, 'yassinL', 'yassin'),
 (4, 'Lucas', 'Beneston', '2020-06-08', 'Montrouge', 'luca@beneston.com', NULL, 'lucasB', 'lucas'),
 (5, 'Chloe', 'Dargelez', '2020-06-02', 'Paris', 'chloe@dargelez', 678765654, 'chloeD', 'chloe'),

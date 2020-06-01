@@ -3,47 +3,23 @@ let server = express();
 let exphbs = require('express-handlebars');
 let session = require('express-session')
 let bodyParser = require('body-parser')
-let passport = require('passport');
-let LocalStrategy = require('passport-local').Strategy;
-
+let passport = require("./config/passport")();
 
 let Handlebars = require("handlebars");
 let MomentHandler = require("handlebars.moment");
 MomentHandler.registerHelpers(Handlebars);
 
-let userService = require('./models/findUser')
-    // Moteur de template
+// Moteur de template
 server.engine('handlebars', exphbs());
 server.set('view engine', 'handlebars');
 
-// Momenthandlebars
-// MomentHandler.registerHelpers(exphbs);
-
 // Middleware
 server.use('/public', express.static('public'))
-server.use(session({ secret: 'secret', cookie: { maxAge: 60000 }, resave: true, saveUninitialized: true }))
-server.use(bodyParser.urlencoded({ extended: false }))
+server.use(bodyParser.urlencoded({ extended: true }))
 server.use(bodyParser.json())
+server.use(session({ secret: 'secret', cookie: { maxAge: 60000 }, resave: true, saveUninitialized: true }))
 server.use(passport.initialize());
 server.use(passport.session());
-
-// MIDDLEWARE AUTHENTIFICATION
-
-passport.use(new LocalStrategy({ passReqToCallback: true }, function(req, user_name, password, done) {
-    console.log(user_name, password)
-    userService.find(user_name, (err, user) => {
-        console.log(user)
-        user = user[0];
-        if (err) { return done(err); }
-        if (!user) {
-            return done(null, false, { message: 'Incorrect username.' });
-        }
-        if (password !== user.password) {
-            return done(null, false, { message: 'Incorrect password.' });
-        }
-        return done(null, user);
-    });
-}));
 
 // ROUTES
 // LOGIN
@@ -51,16 +27,10 @@ server.get("/", (request, response) => {
     response.render("login");
 });
 
-// server.post("/", (request, response) => {
-//     response.redirect("home")
-// })
-
 server.post("/", passport.authenticate('local', {
-        failureRedirect: '/',
-    }), (request, response) => {
-        response.redirect('/home')
-    })
-    // + request.user.user_name
+    failureRedirect: '/',
+    successRedirect: '/home'
+}))
 
 // SIGNUP
 server.get("/signup", (request, response) => {
@@ -76,7 +46,7 @@ server.post("/signup", (request, response) => {
         request.body.city,
         request.body.email,
         request.body.telephone,
-        request.body.user_name,
+        request.body.username,
         request.body.password,
         function() {
 
