@@ -1,12 +1,17 @@
 let connection = require('../config/db')
+let bcrypt = require('bcrypt');
+let saltRounds = 10;
 
 class User {
 
     static create(first_name, last_name, birthday, city, email, telephone, username, password, cb) {
-        connection.query('INSERT INTO user SET first_name = ?, last_name = ?, birthday = ?, city = ?, email = ?, telephone = ?, username = ?, password = ?', [first_name, last_name, birthday, city, email, telephone, username, password], (err, result) => {
-            if (err) throw err
-            cb(result)
-        })
+        bcrypt.hash(password, saltRounds, function(err, hash) {
+            connection.query('INSERT INTO user SET first_name = ?, last_name = ?, birthday = ?, city = ?, email = ?, telephone = ?, username = ?, password = ?', [first_name, last_name, birthday, city, email, telephone, username, hash], (err, result) => {
+                if (err) throw err
+                cb(result)
+            })
+        });
+
     }
 
     static find(username, cb) {

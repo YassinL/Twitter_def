@@ -4,6 +4,7 @@ let exphbs = require('express-handlebars');
 let session = require('express-session')
 let bodyParser = require('body-parser')
 let passport = require("./config/passport")();
+let User = require('./models/user');
 
 let Handlebars = require("handlebars");
 let MomentHandler = require("handlebars.moment");
@@ -30,7 +31,11 @@ server.get("/", (request, response) => {
 server.post("/", passport.authenticate('local', {
     failureRedirect: '/',
     successRedirect: '/home'
-}))
+        // function(request, response) {
+        //     let User = require('./models/user');
+        //     response.redirect('/home');
+        // }
+}));
 
 // SIGNUP
 server.get("/signup", (request, response) => {
