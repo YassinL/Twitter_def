@@ -4,9 +4,9 @@ let saltRounds = 10;
 
 class User {
 
-    static create(first_name, last_name, birthday, city, email, telephone, username, password, cb) {
+    static create(first_name, last_name, birthday, city, email, telephone, username, password, picture, cb) {
         bcrypt.hash(password, saltRounds, function(err, hash) {
-            connection.query('INSERT INTO user SET first_name = ?, last_name = ?, birthday = ?, city = ?, email = ?, telephone = ?, username = ?, password = ?', [first_name, last_name, birthday, city, email, telephone, username, hash], (err, result) => {
+            connection.query('INSERT INTO user SET first_name = ?, last_name = ?, birthday = ?, city = ?, email = ?, telephone = ?, username = ?, password = ?, picture = ?', [first_name, last_name, birthday, city, email, telephone, username, hash, picture], (err, result) => {
                 if (err) throw err
                 cb(result)
             })

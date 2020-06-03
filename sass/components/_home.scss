@@ -35,7 +35,18 @@
     overflow-y: scroll;
     border-right: 1px solid gray;
     border-left: 1px solid gray;
+    &-title {
+        display: flex;
+        align-items: center;
+        padding-left: 1.5%;
+        width: 49vw;
+        height: 10vh;
+        position: fixed;
+        border-bottom: 1px solid gray;
+        background-color: #16212b;
+    }
     &-form {
+        margin-top: 10vh;
         width: 100%;
         border-bottom: 10px solid rgba(128, 128, 128, 0.5);
     }
@@ -80,10 +91,24 @@
         padding: 3%;
         border-bottom: 1px solid grey;
         img {
-            width: 10%;
-            height: auto;
+            width: 10vh;
+            height: 10vh;
             border-radius: 50%;
             margin-right: 2%;
+        }
+        &-content {
+            max-width: 80%;
+            &-username {
+                font-weight: bold;
+                margin-bottom: 3%;
+            }
+            &-date {
+                font-weight: normal;
+                font-size: 0.75rem;
+            }
+            &-text {
+                line-height: 1.5rem;
+            }
         }
     }
 }

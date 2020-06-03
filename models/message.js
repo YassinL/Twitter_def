@@ -10,7 +10,7 @@ class Message {
     }
 
     static all(cb) {
-        connection.query('SELECT * FROM messages LEFT JOIN user ON messages.id_user = user.id_user ORDER BY created_at DESC', (err, rows) => {
+        connection.query('SELECT * FROM messages LEFT JOIN user ON messages.id_user = user.id_user ORDER BY created_at DESC LIMIT 10', (err, rows) => {
             if (err) throw err
             cb(rows)
         })

@@ -3,24 +3,27 @@
     <div class="tweet-navigation">
         <img class="tweet-navigation-image" src="../public/images/logoTwitter.png" alt="">       
         <div class="tweet-navigation-link">
-             <a href="/home/{{username}}">Home</a>             
-             <a href="">Explore</a>
-             <a href="">Notifications</a>
-             <a href="">Messages</a>
-             <a href="">Bookmarks</a>
-             <a href="">Lists</a>
+            <a href="/home/{{username}}">Home</a>             
+            <a href="">Explore</a>
+            <a href="">Notifications</a>
+            <a href="">Messages</a>
+            <a href="">Bookmarks</a>
+            <a href="">Lists</a>
             <a href="/profile/{{username}}">Profile</a>
+            <a href="/">Logout</a>
         </div>
    
     </div>
 
     <div class="tweet-container">
-
+        <div class="tweet-container-title">
+            <h3>{{username}}</h3>
+        </div>
         <form action="/profile/:username" method="post" class="tweet-container-form">
             <div class="tweet-container-message">
                 <label for="message"></label>
                 <div class="tweet-container-text">
-                    <img src="../public/images/yoram.jpeg" alt="">
+                    <img src="{{picture}}" alt="">
                      <textarea name="message" id="message" placeholder="Whats's happening ?"></textarea>
                 </div>
                
@@ -34,7 +37,7 @@
         <div class="comments">
         {{#each message}}
             <div class="comments-comment">
-                <img src="../public/images/yoram.jpeg" alt="">
+                <img src="{{picture}}" alt="">
                 <div class="comments-comment-content">
                     <div class="comments-comment-content-username">{{username}}</div>
                     <div class="comments-comment-content-text">{{ content }}</div>

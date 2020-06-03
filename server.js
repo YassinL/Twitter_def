@@ -83,6 +83,7 @@ server.post("/signup", (request, response) => {
         request.body.telephone,
         request.body.username,
         request.body.password,
+        request.body.picture,
         function() {
 
             response.redirect('/')
@@ -92,7 +93,7 @@ server.post("/signup", (request, response) => {
 // HOME AND TWEET
 server.get('/home/:username', (request, response) => {
     Message.all(function(messages) {
-        response.render('home', { message: messages, username: request.user.username })
+        response.render('home', { message: messages, username: request.user.username, picture: request.user.picture })
     })
 })
 
@@ -111,9 +112,9 @@ server.post('/home/:username', (request, response) => {
 server.get('/profile/:username', (request, response) => {
     let userName = request.params.username
     Message.one(userName, function(messages) {
-        console.log('consolelog de params :', request.params.username)
-        console.log('console de messages', messages)
-        response.render('profile', { message: messages, username: userName })
+        console.log('consolelog de profil :', request.user.picture)
+            // console.log('console de messages', messages)
+        response.render('profile', { message: messages, username: userName, picture: request.user.picture })
     })
 
 })
