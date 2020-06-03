@@ -65,7 +65,22 @@ body {
 
 .tweet-navigation {
   width: 25vw;
-  height: 100%; }
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 2.5%; }
+  .tweet-navigation-image {
+    width: 3vw;
+    margin: 5vh 0; }
+  .tweet-navigation-link {
+    display: flex;
+    flex-direction: column; }
+    .tweet-navigation-link a {
+      text-decoration: none;
+      font-size: 20px;
+      padding: 3% 4%;
+      margin-bottom: 5%;
+      color: #fff; }
 
 .tweet-container {
   width: 50vw;

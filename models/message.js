@@ -18,9 +18,12 @@ class Message {
 
     // SELECT * FROM messages ORDER BY created_at DESC
 
-    // static one(cb) {
-    //     connection.query('SELECT * FROM messages LEFT JOIN user ON messages.id_user = user.id_user ORDER BY created_at DESC')
-    // }
+    static one(username, cb) {
+        connection.query('SELECT * FROM messages LEFT JOIN user ON messages.id_user = user.id_user WHERE user.username = ? ORDER BY created_at DESC', [username], (err, rows) => {
+            if (err) throw err
+            cb(rows)
+        })
+    }
 
 }
 

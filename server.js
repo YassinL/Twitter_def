@@ -110,8 +110,9 @@ server.post('/home/:username', (request, response) => {
 // PROFILE
 server.get('/profile/:username', (request, response) => {
     let userName = request.params.username
-    Message.all(function(messages) {
+    Message.one(userName, function(messages) {
         console.log('consolelog de params :', request.params.username)
+        console.log('console de messages', messages)
         response.render('profile', { message: messages, username: userName })
     })
 
