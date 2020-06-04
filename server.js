@@ -23,36 +23,32 @@ server.use(bodyParser.urlencoded({ extended: true }))
 server.use(bodyParser.json())
     // server.use(cookieParser())
 
-// let options = {
-//     host: 'localhost',
-//     user: 'root',
-//     password: 'root',
-//     database: 'twitter'
-// };
+let options = {
+    host: 'localhost',
+    user: 'root',
+    password: 'root',
+    database: 'twitter'
+};
 
-// var sessionStore = new MySQLStore(options);
+var sessionStore = new MySQLStore(options);
 
 server.use(session({
     secret: 'secret',
     cookie: { maxAge: null },
-    resave: true,
-    // store: sessionStore,
-    saveUninitialized: true
+    resave: false,
+    store: sessionStore,
+    saveUninitialized: false
 }))
 server.use(passport.initialize());
 server.use(passport.session());
 
 
 function authenticationMiddleware() {
-    return (req, res, next) => {
-        console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
-
-        if (req.isAuthenticated()) return next();
-        res.redirect('/')
+    return (request, response, next) => {
+        if (request.isAuthenticated()) return next();
+        response.redirect('/')
     }
 }
-
-
 
 // ROUTES
 // LOGIN
@@ -117,6 +113,13 @@ server.get('/profile/:username', (request, response) => {
         response.render('profile', { message: messages, username: userName, picture: request.user.picture })
     })
 
+})
+
+// logout
+server.get('/logout', (request, response) => {
+    request.logout();
+    request.session.destroy();
+    response.redirect('/');
 })
 
 server.listen(8080);
