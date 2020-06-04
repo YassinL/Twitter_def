@@ -1,17 +1,22 @@
-let express = require('express');
-var cookieParser = require('cookie-parser')
-let server = express();
-let exphbs = require('express-handlebars');
-let session = require('express-session');
-var MySQLStore = require('express-mysql-session')(session);
-let bodyParser = require('body-parser');
-let passport = require("./config/passport")();
-let User = require('./models/user');
-let Message = require('./models/message')
+const express = require('express');
+const cookieParser = require('cookie-parser')
+const server = express();
+const exphbs = require('express-handlebars');
+const session = require('express-session');
+const MySQLStore = require('express-mysql-session')(session);
+const bodyParser = require('body-parser');
 
-let Handlebars = require("handlebars");
-let MomentHandler = require("handlebars.moment");
+const passport = require("./config/passport")();
+const User = require('./models/user');
+const Message = require('./models/message')
+const isAuth = require('./middleware/isAuth')
+
+const Handlebars = require("handlebars");
+const MomentHandler = require("handlebars.moment");
 MomentHandler.registerHelpers(Handlebars);
+
+
+// app.use(isAuth)
 
 // Moteur de template
 server.engine('handlebars', exphbs());
@@ -42,13 +47,6 @@ server.use(session({
 server.use(passport.initialize());
 server.use(passport.session());
 
-
-function authenticationMiddleware() {
-    return (request, response, next) => {
-        if (request.isAuthenticated()) return next();
-        response.redirect('/')
-    }
-}
 
 // ROUTES
 // LOGIN
@@ -87,7 +85,7 @@ server.post("/signup", (request, response) => {
 })
 
 // HOME AND TWEET
-server.get('/home/:username', (request, response) => {
+server.get('/home/:username', isAuth, (request, response) => {
     Message.all(function(messages) {
         response.render('home', { message: messages, username: request.user.username, picture: request.user.picture })
     })
@@ -105,7 +103,7 @@ server.post('/home/:username', (request, response) => {
 })
 
 // PROFILE
-server.get('/profile/:username', (request, response) => {
+server.get('/profile/:username', isAuth, (request, response) => {
     let userName = request.params.username
     Message.one(userName, function(messages) {
         console.log('consolelog de profil :', request.user.picture)
