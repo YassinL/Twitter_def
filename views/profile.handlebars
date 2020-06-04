@@ -17,22 +17,21 @@
 
     <div class="tweet-container">
         <div class="tweet-container-title">
-            <h3>{{username}}</h3>
+            <h3>{{firstName}} {{lastName}}</h3>
         </div>
-        <form action="/profile/:username" method="post" class="tweet-container-form">
-            <div class="tweet-container-message">
-                <label for="message"></label>
-                <div class="tweet-container-text">
-                    <img src="{{picture}}" alt="">
-                     <textarea name="message" id="message" placeholder="Whats's happening ?"></textarea>
-                </div>
-               
+        <div class="tweet-container-profile">
+            <div class="tweet-container-profile-background">
+                <img src="" alt="">
             </div>
-            <div class="tweet-container-button">
-                <button type="submit" class="tweet-button">Tweet</button>
+            <div class="tweet-container-profile-picture">
+                <img src={{picture}} alt="">
             </div>
-            
-        </form>
+            <div class="tweet-container-profile-infos">
+                <h3>{{firstName}} {{lastName}}</h3>
+                <h4>@{{username}}</h4>
+                <p>{{city}}</p>
+            </div>
+        </div>
 
         <div class="comments">
         {{#each message}}

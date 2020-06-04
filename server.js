@@ -104,7 +104,14 @@ server.post('/home/:username', (request, response) => {
 server.get('/profile/:username', isAuth, (request, response) => {
     let userName = request.params.username
     Message.one(userName, function(messages) {
-        response.render('profile', { message: messages, username: userName, picture: request.user.picture })
+        response.render('profile', {
+            message: messages,
+            username: userName,
+            picture: request.user.picture,
+            firstName: request.user.first_name,
+            lastName: request.user.last_name,
+            city: request.user.city
+        })
     })
 
 })

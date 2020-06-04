@@ -21,3 +21,5 @@ CREATE TABLE user (
 
 show tables;
 
+commandes sass : 
+sass --watch sass/style.scss:public/style.css
