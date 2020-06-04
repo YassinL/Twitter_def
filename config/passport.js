@@ -1,17 +1,18 @@
-let passport = require("passport");
-let LocalStrategy = require('passport-local').Strategy;
-let User = require('../models/user');
-let bcrypt = require('bcrypt');
+const passport = require("passport");
+const LocalStrategy = require('passport-local').Strategy;
+const User = require('../models/user');
+const bcrypt = require('bcrypt');
+const flash = require('connect-flash');
 
 module.exports = () => {
     passport.use(new LocalStrategy({ passReqToCallback: true }, function(req, username, password, done) {
-        console.log(username, password)
+
         User.find(username, (err, user) => {
-            console.log(user)
+
             user = user[0];
             if (err) { return done(err); }
             if (!user) {
-                return done(null, false, { message: 'Incorrect username.' });
+                return done(null, false, { message: 'Incorrect Username.' });
             }
 
             const hash = user.password;
@@ -19,7 +20,7 @@ module.exports = () => {
                 if (res == true) {
                     return done(null, user);
                 } else {
-                    return done(null, false, { message: 'Incorrect password.' });
+                    return done(null, false, { message: 'Incorrect Password' });
                 }
             });
 

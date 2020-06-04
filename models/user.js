@@ -15,7 +15,6 @@ class User {
     }
 
     static find(username, cb) {
-        console.log(username)
         connection.query("SELECT * FROM user WHERE username = ?", [username], (err, user) => {
             if (err) throw err
             cb(err, user);

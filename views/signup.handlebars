@@ -2,7 +2,9 @@
 <div class="home">
     <img class="home-image"src="/public/images/logoTwitter.png" alt="logoTwitter">
     <h1 class="home-title">Create your account</h1>
-    
+    {{#if failureFlash }}
+    <h3>{{message}}</h3>
+    {{/if }}
 </div>
 
 
