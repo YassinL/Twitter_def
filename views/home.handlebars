@@ -37,7 +37,7 @@
         <div class="comments">
         {{#each message}}
             <div class="comments-comment">
-                <img src="{{picture}}" alt="">
+                <a href="/profile/{{username}}"><img src="{{picture}}" alt=""></a>
                 <div class="comments-comment-content">
                     <div class="comments-comment-content-username">{{username}} 
                         <span class="comments-comment-content-date">{{ moment created_at "fromNow"}}</span>

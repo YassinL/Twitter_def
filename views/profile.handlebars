@@ -3,13 +3,13 @@
     <div class="tweet-navigation">
         <img class="tweet-navigation-image" src="../public/images/logoTwitter.png" alt="">       
         <div class="tweet-navigation-link">
-            <a href="/home/{{username}}">Home</a>             
+            <a href="/home/{{me}}">Home</a>             
             <a href="">Explore</a>
             <a href="">Notifications</a>
             <a href="">Messages</a>
             <a href="">Bookmarks</a>
             <a href="">Lists</a>
-            <a href="/profile/{{username}}">Profile</a>
+            <a href="/profile/{{me}}">Profile</a>
             <a href="/logout">Logout</a>
         </div>
    
@@ -24,7 +24,7 @@
                 <img src="" alt="">
             </div>
             <div class="tweet-container-profile-picture">
-                <img src={{picture}} alt="">
+                <img src="{{picture}}" alt="">
             </div>
             <div class="tweet-container-profile-infos">
                 <h3>{{firstName}} {{lastName}}</h3>

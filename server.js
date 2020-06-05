@@ -100,21 +100,38 @@ server.post('/home/:username', (request, response) => {
     }
 })
 
-// PROFILE
-server.get('/profile/:username', isAuth, (request, response) => {
-    let userName = request.params.username
-    Message.one(userName, function(messages) {
-        response.render('profile', {
-            message: messages,
-            username: userName,
-            picture: request.user.picture,
-            firstName: request.user.first_name,
-            lastName: request.user.last_name,
-            city: request.user.city
-        })
-    })
 
-})
+// profile username
+server.get('/profile/:username', isAuth, (request, response) => {
+        let userName = request.params.username
+        User.find(userName, function(err, user) {
+            Message.one(userName, function(messages) {
+                console.log('cest le :', user)
+                response.render('profile', {
+                    message: messages,
+                    username: userName,
+                    me: request.user.username,
+                    picture: user[0].picture,
+                    firstName: user[0].first_name,
+                    lastName: user[0].last_name,
+                    city: user[0].city
+                })
+            })
+        })
+
+    })
+    //     // ME PROFILE
+    // server.get('/profile/:username', isAuth, (request, response) => {
+    //     let userName = request.user.username
+    //     Message.one(userName, function(messages) {
+    //         response.render('profile', {
+    //             message: messages,
+    //             username: userName
+    //         })
+    //     })
+
+// })
+
 
 // LOGOUT
 server.get('/logout', (request, response) => {
