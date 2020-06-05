@@ -1,5 +1,5 @@
-let connection = require('../config/db')
-let bcrypt = require('bcrypt');
+const connection = require('../config/db')
+const bcrypt = require('bcrypt');
 let saltRounds = 10;
 
 class User {

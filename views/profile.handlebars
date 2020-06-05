@@ -1,19 +1,6 @@
 <section class="section-accueil">
 
-    <div class="tweet-navigation">
-        <img class="tweet-navigation-image" src="../public/images/logoTwitter.png" alt="">       
-        <div class="tweet-navigation-link">
-            <a href="/home/{{me}}">Home</a>             
-            <a href="">Explore</a>
-            <a href="">Notifications</a>
-            <a href="">Messages</a>
-            <a href="">Bookmarks</a>
-            <a href="">Lists</a>
-            <a href="/profile/{{me}}">Profile</a>
-            <a href="/logout">Logout</a>
-        </div>
-   
-    </div>
+    {{> menuLeft}}
 
     <div class="tweet-container">
         <div class="tweet-container-title">
@@ -33,21 +20,10 @@
             </div>
         </div>
 
-        <div class="comments">
-        {{#each message}}
-            <div class="comments-comment">
-                <img src="{{picture}}" alt="">
-                <div class="comments-comment-content">
-                    <div class="comments-comment-content-username">{{username}}</div>
-                    <div class="comments-comment-content-text">{{ content }}</div>
-                    <div class="comments-comment-content-date">{{ moment created_at "fromNow"}}</div>
-                </div>
-            </div>
-        {{/each}}
-        </div>
+    {{> tweet}}
 
     </div>
 
-    <div class="tweet-search"></div>
+    {{> suggestionRight}}
 
 </section>

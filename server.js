@@ -1,5 +1,4 @@
 const express = require('express');
-const cookieParser = require('cookie-parser')
 const server = express();
 const exphbs = require('express-handlebars');
 const flash = require('connect-flash');
@@ -24,7 +23,6 @@ server.set('view engine', 'handlebars');
 server.use('/public', express.static('public'))
 server.use(bodyParser.urlencoded({ extended: true }))
 server.use(bodyParser.json())
-    // server.use(cookieParser())
 
 let options = {
     host: 'localhost',
@@ -103,35 +101,23 @@ server.post('/home/:username', (request, response) => {
 
 // profile username
 server.get('/profile/:username', isAuth, (request, response) => {
-        let userName = request.params.username
-        User.find(userName, function(err, user) {
-            Message.one(userName, function(messages) {
-                console.log('cest le :', user)
-                response.render('profile', {
-                    message: messages,
-                    username: userName,
-                    me: request.user.username,
-                    picture: user[0].picture,
-                    firstName: user[0].first_name,
-                    lastName: user[0].last_name,
-                    city: user[0].city
-                })
+    let userName = request.params.username
+    User.find(userName, function(err, user) {
+        Message.one(userName, function(messages) {
+            console.log('cest le :', user)
+            response.render('profile', {
+                message: messages,
+                username: userName,
+                me: request.user.username,
+                picture: user[0].picture,
+                firstName: user[0].first_name,
+                lastName: user[0].last_name,
+                city: user[0].city
             })
         })
-
     })
-    //     // ME PROFILE
-    // server.get('/profile/:username', isAuth, (request, response) => {
-    //     let userName = request.user.username
-    //     Message.one(userName, function(messages) {
-    //         response.render('profile', {
-    //             message: messages,
-    //             username: userName
-    //         })
-    //     })
 
-// })
-
+})
 
 // LOGOUT
 server.get('/logout', (request, response) => {

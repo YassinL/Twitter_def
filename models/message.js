@@ -1,4 +1,4 @@
-let connection = require('../config/db')
+const connection = require('../config/db')
 
 class Message {
 

@@ -1,0 +1,14 @@
+<div class="comments">
+    {{#each message}}
+        <div class="comments-comment">
+            <a href="/profile/{{username}}"><img src="{{picture}}" alt=""></a>
+            <div class="comments-comment-content">
+                <div class="comments-comment-content-nameDate">
+                    <a href="/profile/{{username}}"><h3 class="comments-comment-content-username">{{username}}</h3></a> 
+                    <span class="comments-comment-content-date">{{ moment created_at "fromNow"}}</span>
+                </div>
+                <p class="comments-comment-content-text">{{ content }}</p>                    
+            </div>
+        </div>
+    {{/each}}
+</div>
