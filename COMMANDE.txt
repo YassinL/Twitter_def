@@ -23,3 +23,9 @@ show tables;
 
 commandes sass : 
 sass --watch sass/style.scss:public/style.css
+
+Copy .env.exemple to .env
+
+host: process.env.DB_HOST, 
+user : process.env.DB_USER
+database: : process.env.DB_PWD

@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express');
 const server = express();
 const exphbs = require('express-handlebars');
@@ -5,6 +6,7 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 const bodyParser = require('body-parser');
+
 
 const passport = require("./config/passport")();
 const User = require('./models/user');
@@ -14,6 +16,7 @@ const isAuth = require('./middleware/isAuth')
 const Handlebars = require("handlebars");
 const MomentHandler = require("handlebars.moment");
 MomentHandler.registerHelpers(Handlebars);
+
 
 // Moteur de template
 server.engine('handlebars', exphbs());
@@ -25,10 +28,10 @@ server.use(bodyParser.urlencoded({ extended: true }))
 server.use(bodyParser.json())
 
 let options = {
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'twitter'
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.database
 };
 
 var sessionStore = new MySQLStore(options);
@@ -48,7 +51,7 @@ server.use(passport.session());
 // ROUTES
 // LOGIN
 server.get("/", (request, response) => {
-    response.render("login", { error: request.flash('error') });
+    response.render("login", { error: request.flash('error'), title: 'Twitter' });
 });
 
 // , failureFlash: 'Invalid username or password.'
@@ -61,7 +64,7 @@ server.post('/',
 
 // SIGNUP
 server.get("/signup", (request, response) => {
-    response.render("signup", { message: request.flash('info') })
+    response.render("signup", { message: request.flash('info'), title: 'Signup' })
 })
 
 server.post("/signup", (request, response) => {
@@ -84,7 +87,12 @@ server.post("/signup", (request, response) => {
 // HOME AND TWEET
 server.get('/home/:username', isAuth, (request, response) => {
     Message.all(function(messages) {
-        response.render('home', { message: messages, username: request.user.username, picture: request.user.picture })
+        response.render('home', {
+            message: messages,
+            username: request.user.username,
+            picture: request.user.picture,
+            title: 'Home'
+        })
     })
 })
 
@@ -112,7 +120,8 @@ server.get('/profile/:username', isAuth, (request, response) => {
                 picture: user[0].picture,
                 firstName: user[0].first_name,
                 lastName: user[0].last_name,
-                city: user[0].city
+                city: user[0].city,
+                title: 'Profile'
             })
         })
     })
