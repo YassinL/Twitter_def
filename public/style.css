@@ -118,8 +118,8 @@ body {
     width: 100%;
     padding: 3% 3% 0 3%; }
     .tweet-container-text img {
-      width: 15%;
-      height: auto;
+      width: 15vh;
+      height: 15vh;
       border-radius: 50%; }
     .tweet-container-text textarea {
       width: 100%;

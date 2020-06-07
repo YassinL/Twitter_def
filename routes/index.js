@@ -5,7 +5,7 @@ const passport = require("../config/passport")();
 const homeRouter = require("./home");
 const profileRouter = require("./profile");
 const signupRouter = require("./signup");
-const logoutRouter = require("./logout")
+const logoutRouter = require("./logout");
 
 // On laisse dans l'index les routes à la racine 
 // LOGIN
