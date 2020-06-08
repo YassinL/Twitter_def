@@ -25,4 +25,10 @@ router.use(profileRouter);
 router.use(signupRouter);
 router.use(logoutRouter);
 
+// View page 404, lorsqu'on ne trouve pas l'une des routes 
+router.get("*", (request, response) => {
+    response.status(404).render("404");
+});
+
+
 module.exports = router;
