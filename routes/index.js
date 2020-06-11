@@ -6,6 +6,7 @@ const homeRouter = require("./home");
 const profileRouter = require("./profile");
 const signupRouter = require("./signup");
 const logoutRouter = require("./logout");
+const updateRouter = require("./update")
 
 // On laisse dans l'index les routes à la racine 
 // LOGIN
@@ -24,6 +25,7 @@ router.use(homeRouter);
 router.use(profileRouter);
 router.use(signupRouter);
 router.use(logoutRouter);
+router.use(updateRouter);
 
 // View page 404, lorsqu'on ne trouve pas l'une des routes 
 router.get("*", (request, response) => {

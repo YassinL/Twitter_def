@@ -20,5 +20,13 @@ class User {
             cb(err, user);
         })
     }
+
+    static updateUser(first_name, last_name, city, email, telephone, username, id_user, cb) {
+
+        connection.query('UPDATE user SET first_name = ?, last_name = ?, city = ?, email = ?, telephone = ?, username = ? WHERE id_user = ?', [first_name, last_name, city, email, telephone, username, id_user], (err, result) => {
+            if (err) throw err
+            cb(result)
+        })
+    }
 }
 module.exports = User;

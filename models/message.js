@@ -32,5 +32,5 @@ class Message {
         })
     }
 }
-
+//DELETE messages FROM messages INNER JOIN user ON messages.id_user = user.id_user WHERE messages.id = ?
 module.exports = Message
