@@ -25,6 +25,12 @@ class Message {
         })
     }
 
+    static remove(id, cb) {
+        connection.query('DELETE FROM messages WHERE id = ?', [id], (err, rows) => {
+            if (err) throw err
+            cb(rows)
+        })
+    }
 }
 
 module.exports = Message

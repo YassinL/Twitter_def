@@ -5,7 +5,7 @@ exports.getHome = (request, response) => {
     Message.all(function(messages) {
         response.render('home', {
             message: messages,
-            username: request.user.username,
+            me: request.user.username,
             picture: request.user.picture,
             title: 'Home'
         })
@@ -22,3 +22,16 @@ exports.postTweetHome = (request, response) => {
         })
     }
 }
+
+exports.deleteTweets = (request, response) => {
+    Message.deleteTweet(request.params.id, (err, user) => {
+        response.redirect('/home/' + request.user.username);
+    });
+};
+
+// Delete a Customer with the specified customerId in the request
+exports.delete = (request, response) => {
+    Message.remove(request.params.id, (err, data) => {
+        response.redirect('/home/' + request.user.username);
+    });
+};

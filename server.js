@@ -6,6 +6,7 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
 
 const passport = require("./config/passport")();
 const router = require("./routes");
@@ -22,6 +23,7 @@ server.use('/public', express.static('public'))
 // Middleware, lancement du Body Parser pour récupérer et gérer les requêtes des formulaires
 server.use(bodyParser.urlencoded({ extended: true }))
 server.use(bodyParser.json())
+server.use(methodOverride('_method'));
 
 // Créer les sessions dans une table, avec les cookie, et le temps de durée de session de 4h
 let options = {

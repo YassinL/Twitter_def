@@ -9,6 +9,11 @@
                 </div>
                 <p class="comments-comment-content-text">{{ content }}</p>                    
             </div>
+            
+            <form method="post" action="/home/delete/{{id}}?_method=DELETE">
+            <input type="hidden" name="_method" value="DELETE">
+            <button>Delete</button>
+            </form>
         </div>
     {{/each}}
 </div>
